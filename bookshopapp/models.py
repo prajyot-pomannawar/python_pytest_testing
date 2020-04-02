@@ -11,8 +11,13 @@ class User(models.Model):
     password = models.CharField(max_length=50)
     mobile = models.CharField(max_length=50)
 
-    def get_users(self):
+    @classmethod
+    def get_users(cls):
         return User.objects.all()
+
+    @classmethod
+    def get_specific_user(cls, id):
+        return User.objects.get(id=id)
 
     def get_user_email(self):
         return User.objects.only('email')
@@ -36,10 +41,16 @@ class Book(models.Model):
     isbn = models.IntegerField()
     price = models.IntegerField()
 
-    def return_book(self):
+    @classmethod
+    def return_book(cls):
         return Book.objects.all()
 
-    def create_book(self, request):
+    @classmethod
+    def return_specific_book(cls, id):
+        return Book.objects.get(id=id)
+
+    @classmethod
+    def create_book(cls, request):
         data = {
             'title': request.data.get('title').upper(),
             'author': request.data.get('author'),

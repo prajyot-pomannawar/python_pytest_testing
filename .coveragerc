@@ -1,2 +1,5 @@
 [run]
 include = */bookshopapp/*
+
+omit = */migrations/*
+       */admin/*
